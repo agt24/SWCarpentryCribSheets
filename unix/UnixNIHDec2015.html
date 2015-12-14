@@ -1,0 +1,302 @@
+<h2 id="software-carpentry-unix-instructor-crib-sheet">Software Carpentry Unix Instructor Crib Sheet</h2>
+<h4 id="nih-dec-2015">NIH, Dec 2015</h4>
+<h4 id="adam-g-thomas">Adam G Thomas</h4>
+<h4 id="before-class">Before class:</h4>
+<ul>
+<li>set up shell:<br /></li>
+<li>enlarge text size<br /></li>
+<li><code>export PS1='$ '</code><br /></li>
+<li><code>export PROMPT_COMMAND=&quot;history 1 &gt;&gt; ~/Dropbox/UnixHistory.txt&quot;</code><br /></li>
+<li>Turn off the text coloring in terminal (Terminal -&gt; Preferences -&gt; ANSI)<br /></li>
+<li>students check software installation: Unix, git (with XCode) and Python for Day 1</li>
+</ul>
+<p><strong>Intro to Software Carpentry:</strong> <a href="http://swcarpentry.github.io/slideshows/introducing-software-carpentry/index.html#slide-0">http://swcarpentry.github.io/slideshows/introducing-software-carpentry/index.html#slide-0</a></p>
+<h4 id="checklist-for-class">Checklist for class:</h4>
+<ul>
+<li>class website: <a href="http://ouinformatics.github.io/2015-05-27-osu">http://ouinformatics.github.io/2015-05-27-osu</a><br /></li>
+<li>etherpad: <a href="https://etherpad.mozilla.org/2015-05-27-osu">https://etherpad.mozilla.org/2015-05-27-osu</a><br /></li>
+<li>Kate's history: <a href="https://www.dropbox.com/s/femrf7if1swjno6/UnixHistory.txt?dl=0">https://www.dropbox.com/s/femrf7if1swjno6/UnixHistory.txt?dl=0</a><br /></li>
+<li>review of pre-class survey<br /></li>
+<li>mixed audience, both novice/experienced and discplines<br /></li>
+<li>if material is review for you, help by keeping notes on etherpad and helping your neighbor<br /></li>
+<li>scientific computing has a long history of being self taught, so most instructors even learn something new</li>
+</ul>
+<h4 id="setup">SETUP</h4>
+<ul>
+<li>slides: <a href="http://swcarpentry.github.io/shell-novice/motivation.html">http://swcarpentry.github.io/shell-novice/motivation.html</a><br /></li>
+<li>most tasks in the shell can be done with mouse on Desktop. Why do anything differently?<br /></li>
+<li>motivation<br /></li>
+<li>Unix = old school system<br /></li>
+<li>combining powerful tools together using minimal keystrokes<br /></li>
+<li>automating repetitive tasks: moving files<br /></li>
+<li>required to use high performance computing systems<br /></li>
+<li>terms: file, directory/folder<br /></li>
+<li>get data<br /></li>
+<li><a href="http://swcarpentry.github.io/shell-novice/shell-novice-data.zip">http://swcarpentry.github.io/shell-novice/shell-novice-data.zip</a>, move to Desktop, double click to unzip (if not already done)</li>
+</ul>
+<h4 id="introducing-the-shell">INTRODUCING THE SHELL</h4>
+<p><strong>Objectives:</strong> orient to shell and how it relates to the computer, understand the benefit of CLI</p>
+<ul>
+<li>what computers do:<br /></li>
+<li>run programs<br /></li>
+<li>store data<br /></li>
+<li>communicate with each other<br /></li>
+<li>communicate with us → today you'll learn a new way of doing this<br /></li>
+<li>terms:<br /></li>
+<li>graphical user interface: <em>GUI</em><br /></li>
+<li>command line interface: <em>CLI</em><br /></li>
+<li>how it works -- the Read Evaluate Print Loop (REPL):<br /></li>
+<li>you type something<br /></li>
+<li>computer reads it<br /></li>
+<li>executes command<br /></li>
+<li>prints output<br /></li>
+<li>use command shell to make this happen: this is the interface between user and computer<br /></li>
+<li>bash: Bourne again shell, most commonly used, default on most modern implementations<br /></li>
+<li>example data:<br /></li>
+<li>our friend Nelle has six months worth of survey data collected from the North Pacific<br /></li>
+<li>300 samples of goo<br /></li>
+<li><p>pipeline:</p>
+<ul>
+<li>Determine the abundance of 300 proteins<br /></li>
+<li>Each sample has one output file with one line for each protein<br /></li>
+<li>calculate statistics for each protein separately using program goostat<br /></li>
+<li>compare statistics for proteins using program called goodiff<br /></li>
+<li>write up results and submit by end of month<br /></li>
+</ul></li>
+<li>if enters all commands by hand, will need to do 45,150 times.<br /></li>
+<li>What can she do instead?<br /></li>
+<li><p>Alternative framing: Nelle has 600 fMRI scans from 300 different subjects and needs to determine the mean connectivity between 10 different ROIs</p></li>
+<li>Key terms in Etherpad/Whiteboard<br /></li>
+<li><em>Shell</em><br /></li>
+<li><em>CLI</em> &amp; <em>GUI</em><br /></li>
+<li>Benefits of the CLI<br /></li>
+<li>Automate repetative tasks (30 minutes vs. 2 weeks)<br /></li>
+<li>Prevent user error<br /></li>
+<li>Processing pipelnes are re-usable and sharable<br /></li>
+<li><p><em>REPL</em> Read-Evaluate-Print-Loop</p></li>
+</ul>
+<h4 id="files-and-directories">FILES AND DIRECTORIES</h4>
+<p><strong>Objectives:</strong> paths, learn basic commands for working with files and directories, learn syntax of commands, tab-completion</p>
+<ul>
+<li>prompt: <code>$</code> indicates computer is ready to accept commands<br /></li>
+<li><code>whoami</code> press enter<br /></li>
+<li>finds program<br /></li>
+<li>runs program<br /></li>
+<li>displays program's output<br /></li>
+<li>displays new prompt<br /></li>
+<li><code>pwd</code> print working directory, in this case it is also the home directory<br /></li>
+<li>root directory: holds everything else, begins with slash <code>/</code><br /></li>
+<li>structure of directories: nested<br /></li>
+<li>slashes can also be a separator between names<br /></li>
+<li><code>ls</code> listing, prints names of files and directories in current directory and prints in alphabetical order<br /></li>
+<li>file suffixes are informative and necessary for computers (and us!) to interpret them<br /></li>
+<li><code>ls -F</code> adds trailing / to names of directories<br /></li>
+<li>spaces and capitalization in commands are important!<br /></li>
+<li><code>-F</code> is an option, argument, or flag<br /></li>
+<li><code>ls -F data</code> to list files within data<br /></li>
+<li><code>ls -F /data</code> what is the difference here? this command will search the same directory in root, regardless of what working directory is<br /></li>
+<li><code>ls</code> again folders in current directory<br /></li>
+<li><code>cd data</code> change directory to data folder<br /></li>
+<li><code>pwd</code><br /></li>
+<li><code>ls -F</code><br /></li>
+<li><code>cd ..</code> go up one level in file hierarchy<br /></li>
+<li><code>..</code> is special directory<br /></li>
+<li>can also use absolute paths<br /></li>
+<li><code>ls -F -a</code> to see hidden files, including <code>.</code> and <code>..</code><br /></li>
+<li>file organization:<br /></li>
+<li><code>ls north-pacific-gyre/2012-07-03/</code><br /></li>
+<li>tab completion<br /></li>
+<li>Challenge questions 1 and 2 through Socrative<br /></li>
+<li>teacher room: AGTNIH<br /></li>
+<li><p>start quiz, teacher paced, disable student names</p></li>
+<li><em>prompt</em><br /></li>
+<li><em>pwd</em>, <em>ls</em>, <em>cd</em><br /></li>
+<li><p><em>File systems</em></p></li>
+</ul>
+<h4 id="creating-things">CREATING THINGS</h4>
+<p><strong>Objectives:</strong> create directory hierarchy that matches given diagram, create files, look in folders, delete folders</p>
+<ul>
+<li>go back to Nelle's home directory (how?)<br /></li>
+<li><code>pwd</code>, <code>ls -F</code><br /></li>
+<li><code>mkdir thesis</code><br /></li>
+<li><code>ls -F</code><br /></li>
+<li><code>ls -F thesis</code><br /></li>
+<li>move into thesis<br /></li>
+<li><code>nano draft.txt</code><br /></li>
+<li>creates file, opens text editor<br /></li>
+<li>Editors are like cars -- everyone wants to customize them, so there are hundreds if not thousands of different models<br /></li>
+<li>write text<br /></li>
+<li>use <code>Control+O</code> to save file shorthand is <code>^O</code>)<br /></li>
+<li><code>Control+X</code> to exit<br /></li>
+<li><code>ls</code>, <code>rm draft.txt</code>, <code>ls</code><br /></li>
+<li>where does file go?<br /></li>
+<li>recreate file then move up one directory<br /></li>
+<li><code>nano draft.txt</code><br /></li>
+<li><code>cd ..</code><br /></li>
+<li>removing a directory:<br /></li>
+<li><code>rm thesis</code>: error<br /></li>
+<li><code>rmdir thesis</code>: still get error<br /></li>
+<li><code>rm thesis/draft.txt</code><br /></li>
+<li><code>rmdir thesis</code><br /></li>
+<li>could've also used <code>rm -r thesis</code>, but that can be dangerous!<br /></li>
+<li><code>mkdir thesis</code>: recreate<br /></li>
+<li><code>nano thesis/draft.txt</code><br /></li>
+<li><code>ls thesis</code>, <code>mv thesis/draft.txt thesis/quotes.txt</code>, <code>ls thesis</code><br /></li>
+<li>note: <code>mv</code> works on directories as well<br /></li>
+<li><code>mv thesis/quotes.txt .</code><br /></li>
+<li><code>ls thesis</code><br /></li>
+<li><code>ls quotes.txt</code><br /></li>
+<li><code>cp quotes.txt thesis/quotations.txt</code><br /></li>
+<li><code>ls quotes.txt thesis/quotations.txt</code><br /></li>
+<li><code>rm quotes.txt</code>, <code>ls quotes.txt thesis/quotations.txt</code><br /></li>
+<li><p>Socrative questions 3 and 4</p></li>
+<li><em>mkdir</em><br /></li>
+<li><em>nano</em> <em>(editor)</em><br /></li>
+<li><em>rm</em>, <em>rmdir</em><br /></li>
+<li><p><em>mv</em>, <em>cp</em></p></li>
+</ul>
+<h4 id="pipes-and-filters">PIPES AND FILTERS</h4>
+<p><strong>Objectives:</strong> redirect command output to file, construct pipelines</p>
+<ul>
+<li><code>ls molecules</code>, <code>cd molecules</code><br /></li>
+<li><code>wc *.pdb</code><br /></li>
+<li>word count: lines, words, characters<br /></li>
+<li><code>*</code> is a wildcard, it matches anything (zero or more characters, there are others)<br /></li>
+<li><code>wc -l *.pdb</code> only report number of lines<br /></li>
+<li>`wc -l *.pdb &gt; lengths.txt : send output to new file named lengths.txt<br /></li>
+<li><code>&gt;</code> will overwrite previous file<br /></li>
+<li>what does <code>&gt;&gt;</code> do?<br /></li>
+<li>can't remember how wc reports? use <code>man wc</code> (<code>q</code> to exit), <code>wc -h</code>, or <code>wc –help</code> (this should work for most unix commands), also google man wc<br /></li>
+<li>ls lengths.txt, cat lengths.txt (for concatenate)<br /></li>
+<li><code>sort -n lengths.txt</code> sort by first column, using numerical order<br /></li>
+<li>does not change file, just prints output to screen<br /></li>
+<li><code>sort -n lengths.txt &gt; sorted-lengths.txt</code><br /></li>
+<li>arrow up to recall last command<br /></li>
+<li><code>head -1 sorted-lengths.txt</code> final result: which one file is shortest?<br /></li>
+<li><code>sort -n lengths.txt | head -l</code> : vertical bar is a pipe, which sends output of command on left as input to command on right<br /></li>
+<li><code>head</code> prints specified number of lines from top of file<br /></li>
+<li><code>wc -l *.pdb | sort -n | head -1</code> programming model: pipes and filters<br /></li>
+<li>note: you only enter the original files once!<br /></li>
+<li>standard input, standard output<br /></li>
+<li>nelle's pipeline:<br /></li>
+<li>start in her home directory (<code>users/Nelle</code>)<br /></li>
+<li><code>cd north-pacific-gyre/2012-07-03</code><br /></li>
+<li>all files should contain same amount of data<br /></li>
+<li>any files contain too little data?<br /></li>
+<li><code>wc -l *.txt | sort -n | head -5</code><br /></li>
+<li>any files contain too much data?<br /></li>
+<li><code>wc -l *.txt | sort -n | tail -5</code><br /></li>
+<li>file marked with Z? outside naming convention, may contain missing data<br /></li>
+<li><code>ls *Z.txt</code><br /></li>
+<li>records note no depth recorded for these samples<br /></li>
+<li>may not want to remove, but will later select all other files using *[AB].txt<br /></li>
+<li>Socrative questions 5 and 6</li>
+</ul>
+<h4 id="loops">LOOPS</h4>
+<p><strong>Objectives:</strong> write loops that apply commands to series of files, trace values in loops, explain variables vs values, why spaces and punctuation shouldn't be used in file names, history, executing commands again</p>
+<ul>
+<li>what if you wanted to perform the same commands over and over again on multiple files?<br /></li>
+<li>go to creatures directory <code>users/nelle/creatures</code><br /></li>
+<li>may try: <code>mv *.dat original-*.dat</code> bur doesn't work<br /></li>
+<li>you can perform these operations using a loop<br /></li>
+<li><p>example looking at first three lines in each file</p>
+<pre><code>for filename in basilisk.dat unicorn.dat
+  do 
+head -3 $filename
+  done</code></pre></li>
+<li>what does this look like when you arrow back up?<br /></li>
+<li>explain syntax: filename is variable, what does it stand for? how is it represented later?<br /></li>
+<li>shell prompt changes, if you get stuck, use control+C to get out<br /></li>
+<li>can specify whatever variable name you want<br /></li>
+<li>why might it be problematic to have filenames with spaces?<br /></li>
+<li><p>you can include multiple commands in a loop:</p>
+<pre><code>for filename in *.dat
+do
+echo $filename
+head -100 $filename | tail -20 
+done</code></pre></li>
+<li>use of wildcard. what does echo do? why is this useful for loops?<br /></li>
+<li>write a for loop to resolve the original problem of creating a backup (copy of original data)<br /> *strategy: <code>echo</code> command before running final, to make sure loop is functioning the way you expect<br /></li>
+<li>nelle's example:<br /></li>
+<li><code>cd north-pacific-gyre/2012-07-03</code><br /></li>
+<li>check: <code>for datafile in *[AB].txt; do; echo $datafile; done</code><br /></li>
+<li>add command: <code>for datafile in *[AB].txt; do; echo $datafile stats-$datafile; done</code><br /></li>
+<li>add command: <code>for datafile in *[AB].txt; do; goostats $datafile stats-$datafile; done</code> (kill job using ^C)<br /></li>
+<li>add echo: <code>for datafile in *[AB].txt; do; echo $datafile; goostats $datafile stats-$datafile; done</code><br /></li>
+<li>tab completion: move to start of line using <code>^A</code> and end of line <code>^E</code> (option with arrows to move by one word)<br /></li>
+<li><code>history</code>: see old commands, find line number (repeat using !number)<br /></li>
+<li><p>Socrative questions 7 and 8</p></li>
+</ul>
+<h4 id="shell-scripts">SHELL SCRIPTS</h4>
+<p><strong>Objectives:</strong> write shell script to run command or series of commands for fixed set of files, run shell script from command line, write shell script to operate on set of files defined on command line, create pipelines including user-written shell scripts</p>
+<ul>
+<li>go back to molecules in nelle's directory<br /></li>
+<li>create file called <code>middle.sh</code> and add this command: <code>head -15 octane.pdb | tail -5</code><br /></li>
+<li><code>bash middle.sh</code><br /></li>
+<li><code>.sh</code> means it's a shell script<br /></li>
+<li>very important to make these in a text editor, rather than in word!<br /></li>
+<li>edit <code>middle.sh</code> and replace file name with <code>&quot;$1&quot;</code><br /></li>
+<li>quotations accommodates spaces in filenames<br /></li>
+<li><code>bash middle.sh octane.pdb</code>, should get same output<br /></li>
+<li>try another file: <code>bash middle.sh pentane.pdb</code><br /></li>
+<li>edit <code>middle.sh</code> with <code>head “$2” “$1” | tail “$3”</code><br /></li>
+<li><code>bash middle.sh pentane.pdb -20 -5</code><br /></li>
+<li><p>to remember what you've done, and allow for other people to use: add comments to top of file</p>
+<pre><code>#select lines from middle of a file
+#usage: middle.sh filename -end_line -num_lines</code></pre></li>
+<li>explain comments<br /></li>
+<li>what if we wanted to operate on many files? create new file: <code>sorted.sh</code><br /></li>
+<li><code>wc -l “$@” | sort -n</code><br /></li>
+<li><code>bash sorted.sh *.pdb ../creatures/*.dat</code><br /></li>
+<li>add comment!<br /></li>
+<li>save last few lines of history to file to remember how to do work again later:<br /></li>
+<li><code>history | tail -4 &gt; redo-figure.sh</code><br /></li>
+<li><code>history | tail -5 | colrm 1 7</code> (1-7 characters)<br /></li>
+<li>nelle problem<br /></li>
+<li>run goostats on all data files<br /></li>
+<li><p><code>do-stats.sh</code>:</p>
+<pre><code>#calculate reduced stats for data files at J = 100 C/bp
+  for datafile in “$@”
+do 
+  echo $datafile
+  bash goostats -J 100 -r $datafile stats-$datafile
+  done</code></pre></li>
+<li><code>bash do-stats.sh *[AB].txt</code><br /></li>
+<li>or just report <code>bash do-stats.sh *[AB].txt | wc -l</code><br /></li>
+<li><p>Socrative question 9</p></li>
+</ul>
+<h4 id="finding-things">FINDING THINGS</h4>
+<p><strong>Objectives:</strong> grep to select lines in text which match patterns, find to find files whose names match patterns, nesting files, text vs binary files</p>
+<ul>
+<li>move to writing subdirectory<br /></li>
+<li><code>cat haiku.txt</code><br /></li>
+<li><code>grep not haiku.txt</code> : find lines that contain “not”<br /></li>
+<li><code>grep day haiku.txt</code> : find lines that contain “day”<br /></li>
+<li><code>grep -w day haiku.txt</code> : searches only for whole words<br /></li>
+<li><code>grep -n it haiku.txt</code> : includes the numbers on lines that match<br /></li>
+<li><code>grep -n -w the haiku.txt</code> : combine flags<br /></li>
+<li><code>grep -n -w -i the haiku.txt</code> : make case insensitive<br /></li>
+<li><code>grep -n -w -v the haiku.txt</code> : invert selection, only lines that do NOT contain the<br /></li>
+<li>the real strength of grep, and the origin of its name, is “regular expressions,” which describes ways of programmatically describing text strings/search patterns, but we don't have time to cover these today (many awesome lessons and tutorials online)<br /></li>
+<li>difference between grep and find<br /></li>
+<li><code>find . -type d</code> : look for things that are directories in given path<br /></li>
+<li><code>find . -type f</code> : look for files instead<br /></li>
+<li>find is automatically recursive (keeps drilling down into file hierarchy)<br /></li>
+<li>can specify depth: <code>find . -maxdepth 1 -type f</code><br /></li>
+<li>or <code>-mindepth</code><br /></li>
+<li>can match by name: <code>find . -name *.txt</code> (will only give one filename! expands name prior to running command)<br /></li>
+<li>correct way: <code>find . -name '*.txt'</code><br /></li>
+<li>find similar to list, but has more refined parameter searching<br /></li>
+<li>can combine together: count all lines in a group of files<br /></li>
+<li><code>wc -l $(find . -name '*.txt')</code><br /></li>
+<li>nesting or subshell<br /></li>
+<li>equivalent command: <code>wc -l ./data/one.txt ./data/two.txt ./haiku.txt</code><br /></li>
+<li>can also combine find and grep: find .pbd files that contain Iron<br /></li>
+<li><code>grep FE $(find .. -name '*.pdb')</code><br /></li>
+<li>today we've only talked about text files, what about images, databases, etc? those are binary (machine readable)<br /></li>
+<li>Socrative question 10</li>
+</ul>
+<h4 id="end-class">END CLASS</h4>
+<ul>
+<li>stop shell script output</li>
+</ul>

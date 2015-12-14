@@ -1,12 +1,13 @@
 ##Software Carpentry Unix Instructor Crib Sheet
-####Oklahoma State University, May 2015
-####Kate L Hertweck, University of Texas at Tyler
+####NIH, Dec 2015
+####Adam G Thomas
 
 ####Before class:
 * set up shell:
   * enlarge text size
   * `export PS1='$ '`
   * `export PROMPT_COMMAND="history 1 >> ~/Dropbox/UnixHistory.txt"`
+  * Turn off the text coloring in terminal (Terminal -> Preferences -> ANSI)
 * students check software installation: Unix, git (with XCode) and Python for Day 1
 
 **Intro to Software Carpentry:** http://swcarpentry.github.io/slideshows/introducing-software-carpentry/index.html#slide-0 
@@ -62,11 +63,16 @@
     * write up results and submit by end of month
   * if enters all commands by hand, will need to do 45,150 times. 
   * What can she do instead?
+  * Alternative framing: Nelle has 600 fMRI scans from 300 different subjects and needs to determine the mean connectivity between 10 different ROIs
+
 
 * Key terms in Etherpad/Whiteboard
 * _Shell_
-* _CLI_
-* _GUI_
+* _CLI_ &  _GUI_
+* Benefits of the CLI
+  * Automate repetative tasks (30 minutes vs. 2 weeks)
+  * Prevent user error
+  * Processing pipelnes are re-usable and sharable
 * _REPL_ Read-Evaluate-Print-Loop
 
 
