@@ -2,6 +2,59 @@
 ####National Institutes of Health, Dec 2015
 ####Adam Thomas
 
+
+
+####Intro
+
+### How to get data out of relational databases
+
+* Least popular -- not as new and sexy at git & python, but they make the world go around
+* Why do I need a database? What's wrong with text files?
+* Easy to start, but fall apart fast
+* If you ever find yourself asking "How many of my subjects are over 40, schizophrenic, right-handed, and more than one affected sibbling" then you should be using a database
+* If you write that question with database it take five seconds and looks almost the same way I just said it
+* If you write it with Python it will take you a few minutes, a few lines, and will probably have a few bugs in it
+* You used relational databases more than you know: PubMed, dbSNP, GenBank, HCP (XNAT), Google
+* NoSQL, NewSQL, etc but at this level it's not importnat
+
+
+### Four Databases your care about
+* DB2 & Oracle -- Complicated and expensive: The Space Shuttles of Databases
+* MySQL & PostgreSQL -- Free and open source, Postgres is better, XNAT PostGres
+* sqllite -- super lightweght, great for learning, probably on your phone
+
+
+XNAT: postgres
+
+
+* Get the diagram!
+
+
+
+
+####Selecting Data
+####Sorting and Removing Duplicates
+####Filtering
+####Calculating New Values
+####Missing Data
+####Aggregation
+####Combining Data
+JOIN
+####Data Hygiene
+####Creating and Modifying Data
+####Programming with Databases
+
+####Resources
+Greg Wilson giving this lession in 2012
+https://www.youtube.com/watch?v=Fw7s1qEfpn4
+https://www.youtube.com/watch?v=74ADpklXo9c
+https://www.youtube.com/watch?v=5u66tF5q3LA
+https://www.youtube.com/watch?v=JTN95fa_UrY
+
+
+
+
+
 ####Before class:
 * set up shell:
   * enlarge text size
@@ -9,7 +62,7 @@
   * `export PROMPT_COMMAND="history 1 >> ~/Dropbox/UnixHistory.txt"`
 * students check software installation: Unix, git (with XCode) and Python for Day 1
 
-####SETUP
+####Introducing Databases
 
 * Three common options for storage are text files, spreadsheets, and databases.
   * Text files are easiest to create, and work well with version control,
@@ -17,12 +70,77 @@
   * Databases
     * include powerful tools for search and analysis
 	* can handle large, complex data sets.
-* `cd ~/Desktop`
-* `mkdir swc_sql` 
-* `cd swc_sql`
-* `wget http://files.software-carpentry.org/survey.db`
+####Setup 
+Get setup
+
+    $ cd ~/Desktop
+    $ mkdir swc_sql 
+    $ cd swc_sql
+    $ wget http://files.software-carpentry.org/survey.db
+
+
+First, load the example database into SQLite. 
+On the shell command line, type
+
+    sqlite3 survey.db
+
+This command instructs SQLite to load the database in the `survey.db` file.
+
+You should see something like the following.
+
+    SQLite version 3.8.8 2015-01-16 12:08:06
+    Enter ".help" for usage hints.
+    sqlite>
+
+For a list of useful system commands, enter <code>.help</code>.
+
+All SQLite-specific commands are prefixed with a . to distinguish them from SQL commands. 
+Type <code>.tables</code> to list the tables in the database. 
+
+    sqlite> .tables
+    Person   Site     Survey   Visited
+
+
+Type the following SQL <code>SELECT</code> command. 
+This <code>SELECT</code> statement selects all (*) rows from the Site table.
+
+<code>select * from Site;</code>
+
+Complete your SQL statement with a semicolon.
+
+    sqlite> select * from Site;
+    DR-1|-49.85|-128.57
+    DR-3|-47.15|-126.72
+    MSK-4|-48.87|-123.4
+
+You can change some SQLite settings to make the output easier to read. 
+First, 
+set the output mode to display left-aligned columns. 
+Then turn on the display of column headers.
+
+    sqlite> .mode column
+    sqlite> .header on
+    sqlite> select * from Site;
+    name        lat         long
+    ----------  ----------  ----------
+    DR-1        -49.85      -128.57
+    DR-3        -47.15      -126.72
+    MSK-4       -48.87      -123.4
+
+
+To exit SQLite and return to the shell command line, 
+you can use either `.quit` or `.exit`.
+* Create a directory and grab an example database
+
+* Open the database and look at what tables are there
+
 * `sqlite3 survey.db`
 * `sqlite> .tables`
+
+
+
+####Everything below here is not part of this crib -- just here for reference, temporarily
+
 
 * slides: http://swcarpentry.github.io/shell-novice/motivation.html
 * most tasks in the shell can be done with mouse on Desktop. Why do anything differently?
